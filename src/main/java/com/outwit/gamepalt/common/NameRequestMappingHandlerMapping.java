@@ -22,8 +22,7 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
  *
  * 2015年6月18日下午3:05:43
  */
-public class MyRequestMappingHandlerMapping extends
-		RequestMappingHandlerMapping {
+public class NameRequestMappingHandlerMapping extends RequestMappingHandlerMapping {
 
 	private boolean useSuffixPatternMatch = true;
 
@@ -55,7 +54,7 @@ public class MyRequestMappingHandlerMapping extends
 			Method method) {
 		String[] patterns = resolveEmbeddedValuesInPatterns(annotation.value());
 		if (patterns != null && (patterns.length == 0)) {
-			patterns = new String[] { method.getName().toLowerCase() };
+			patterns = new String[] { method.getName().toLowerCase()+".do" };
 		}
 		return new RequestMappingInfo(new PatternsRequestCondition(patterns,
 				getUrlPathHelper(), getPathMatcher(),
